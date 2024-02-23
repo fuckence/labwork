@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task List</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    .task-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .task-item .title {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .task-item .description {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="mb-3">
+      <label for="titleInput" class="form-label">Title</label>
+      <input type="text" class="form-control" id="titleInput">
+    </div>
+    <div class="mb-3">
+      <label for="descriptionInput" class="form-label">Description</label>
+      <textarea class="form-control" id="descriptionInput" rows="3"></textarea>
+    </div>
+    <button class="btn btn-primary" onclick="addTask()">Add to List</button>
+    <button class="btn btn-primary" onclick="clearList()">Clear List</button>
+
+
+    <h2>Your items</h2>
+    <div class="col-6 d-flex flex-row justify-content-between" id="taskList">
+        <div id="titleList" class="col-6"></div>
+        <div id="descriptionList" class="col-6"></div>
+    </div>
+  </div>
+
+  <script>
+    function addTask() {
+      var title = document.getElementById("titleInput").value;
+      var description = document.getElementById("descriptionInput").value;
+      
+      if (title !== "" && description !== "") {
+        var titleItem = document.getElementById("titleList");
+        var descriptionItem = document.getElementById("descriptionList");
+
+
+
+        var titleElement = document.createElement("p");
+        titleElement.classList.add("title");
+        titleElement.innerText = title;
+
+        var descriptionElement = document.createElement("p");
+        descriptionElement.classList.add("description");
+        descriptionElement.innerText = description;
+        
+
+        titleItem.appendChild(titleElement);
+        descriptionItem.appendChild(descriptionElement);
+        
+        // Clear input fields
+        document.getElementById("titleInput").value = "";
+        document.getElementById("descriptionInput").value = "";
+      }
+    }
+    
+    function clearList() {
+      var taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+    }
+  </script>
+
+</body>
+</html>
